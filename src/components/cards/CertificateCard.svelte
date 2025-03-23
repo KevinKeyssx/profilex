@@ -14,32 +14,15 @@
     href            = {certificate.link} 
     target          = "_blank" 
     rel             = "noopener noreferrer"
-    class           = "group relative block rounded-xl overflow-hidden transition-all duration-500 hover:scale-105 hover:z-10"
+    class           = "group relative block rounded-xl transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl hover:shadow-purple-900/20"
     on:mouseenter   = {() => isHovered = true }
     on:mouseleave   = {() => isHovered = false }
     in:fly          = {{ y: 50, duration: 500 }}
 >
-    <!-- Animated border -->
-    <div class="absolute inset-0 rounded-xl border-2 border-transparent p-[2px] before:absolute before:inset-0 before:rounded-xl before:border-2 before:border-transparent before:bg-[length:400%_400%] before:bg-gradient-to-r before:from-purple-500 before:via-blue-500 before:to-purple-500 before:animate-border-flow"></div>
-
     <!-- Card content -->
-    <div class="relative h-full bg-gray-900 rounded-lg overflow-hidden z-10">
-    <!-- Certificate image -->
-        <div class="h-48 overflow-hidden relative">
-            <img 
-            src={certificate.image || "/placeholder.svg"} 
-            alt={certificate.title} 
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
-        </div>
-
+    <div class="h-full bg-gray-900 rounded-lg overflow-hidden z-10">
         <!-- Certificate info -->
         <div class="p-6 relative">
-            <div class="absolute top-0 right-0 transform -translate-y-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm shadow-lg shadow-purple-500/20">
-                {certificate.date}
-            </div>
-
             <h3 class="text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors duration-300">
                 {certificate.title}
             </h3>
@@ -59,12 +42,16 @@
         </div>
     </div>
 
+    <!-- Date badge -->
+    <div class="z-50 absolute top-0 right-0 transform -translate-y-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm shadow-lg shadow-purple-500/20" style="margin-top: -1px;">
+        {certificate.date}
+    </div>
+
     <!-- Glow effect on hover -->
     {#if isHovered}
         <div class="absolute inset-0 rounded-xl bg-purple-500/20 blur-xl animate-pulse-slow"></div>
     {/if}
 </a>
-
 <style>
     @keyframes border-flow {
         0%, 100% {
