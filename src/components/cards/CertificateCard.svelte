@@ -10,7 +10,7 @@
     let isHovered = false;
 </script>
 
-<a 
+<a
     href            = {certificate.link} 
     target          = "_blank" 
     rel             = "noopener noreferrer"

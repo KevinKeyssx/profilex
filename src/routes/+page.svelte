@@ -2,12 +2,14 @@
     import { onMount } from 'svelte';
     import { fade, fly} from 'svelte/transition';
 
-    import ShinyButton      from '$components/buttons/ShinyButton.svelte';
+    import Aura             from '$components/Aura.svelte';
     import AnimatedTitle    from '$components/title/AnimatedTitle.svelte';
+    import ShinyButton      from '$components/buttons/ShinyButton.svelte';
     import CertificateCard  from '$components/cards/CertificateCard.svelte';
     import ProjectCard      from '$components/cards/ProjectCard.svelte';
     import Footer           from '$components/Footer.svelte';
     import Social           from '$components/cards/Social.svelte';
+    import Search           from '$components/inputs/Search.svelte';
     import { certificates } from '$lib/data-certificates';
     import { projects }     from '$lib/data-projectes';
 
@@ -28,21 +30,7 @@
             project.technologies.forEach(tech => techSet.add(tech));
         });
         allTechnologies = Array.from(techSet);
-    
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                activeSection = entry.target.id;
-            }
-            });
-        }, { threshold: 0.5 });
-    
-        sections.forEach(section => {
-            if (sectionRefs[section]) {
-            observer.observe(sectionRefs[section]);
-            }
-        });
-    
+
         window.addEventListener('scroll', () => {
             isNavbarBlurred = window.scrollY > 50;
         });
@@ -77,6 +65,8 @@
     <title>My Portfolio</title>
     <meta name="description" content="Personal portfolio showcasing my projects and skills" />
 </svelte:head>
+
+<Aura />
 
 <div class="dark bg-gray-900 text-white min-h-screen">
     <!-- Navbar -->
@@ -178,7 +168,7 @@
                             />
                         </div>
 
-                        <div class="absolute -bottom-10 -right-6 w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
+                        <div class="absolute -bottom-10 left-[62%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
                             <div class="grid">
                                 <span class="text-2xl font-bold text-amber-300">5+</span>
 
@@ -250,11 +240,9 @@
             <div class="mb-12 max-w-3xl mx-auto">
                 <div class="flex flex-col md:flex-row gap-4 mb-8">
                     <div class="flex-1">
-                        <input 
-                            type="text" 
-                            bind:value={searchTerm} 
-                            placeholder="Search projects..." 
-                            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                        <Search
+                            bind:value={searchTerm}
+                            placeholder="Search projects..."
                         />
                     </div>
                 </div>
@@ -343,5 +331,43 @@
     
     .animate-pulse {
         animation: pulse 8s infinite;
+    }
+
+    /* Scrollbar Styles */
+    :global(::-webkit-scrollbar) {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+    }
+
+    :global(::-webkit-scrollbar-track) {
+        background: #13111C;
+        border-radius: 999px;
+    }
+
+    :global(::-webkit-scrollbar-thumb) {
+        background: linear-gradient(180deg, #6366f1 0%, #996ac5 100%);
+        border-radius: 999px;
+        border: 2px solid #13111C;
+    }
+
+    :global(::-webkit-scrollbar-thumb:hover) {
+        background: linear-gradient(180deg, #818cf8 0%, #471675 100%);
+    }
+
+    /* Firefox */
+    :global(html) {
+        scrollbar-width: thin;
+        scrollbar-color: #210a4b #13111C;
+    }
+
+    :global(html::-moz-scrollbar-thumb) {
+        background: linear-gradient(180deg, #6366f1 0%, #471675 100%);
+        border-radius: 999px;
+    }
+
+    :global(html::-moz-scrollbar-track) {
+        background: #0e0a22;
+        border-radius: 999px;
     }
 </style>

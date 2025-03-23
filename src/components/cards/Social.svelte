@@ -30,7 +30,7 @@
     const basicColors = {
         bg      : 'bg-gray-900/80',
         shadow  : 'shadow-gray-900/50',
-        glow    : 'rgba(75, 85, 99, 0.5)',
+        glow    : 'rgba(75, 85, 99, 0.6)',
     }
 
 
@@ -50,7 +50,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="social-button group relative flex items-center justify-center w-14 h-14 rounded-full {colors.bg} {colors.hover} transition-all duration-300 ease-out hover:scale-110"
-            style="box-shadow: 0 0 15px {colors.glow};"
+            style="--glow-color: {colors.glow}"
             aria-label={social.name}
         >
             <div class="relative z-10 transition-all duration-300 group-hover:scale-110 text-white">
@@ -58,27 +58,26 @@
             </div>
 
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-            <span class="absolute -bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-200 text-sm text-gray-400 whitespace-nowrap">
-            {social.name}
+
+            <span class="absolute -bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-200 text-sm text-gray-300 whitespace-nowrap">
+                {social.name}
             </span>
-        </a>
+        </a>    
     {/each}
 </div>
 
 <style>
-    @keyframes pulse {
+    @keyframes shadowPulse {
         0%, 100% {
-            transform: scale(1.13);
-            opacity: 1;
+            box-shadow: 0 0 45px var(--glow-color);
         }
         50% {
-            transform: scale(1.05);
-            opacity: 0.9;
+            box-shadow: 0 0 10px var(--glow-color);
         }
     }
 
     .social-button {
-        animation: pulse 3s ease-in-out infinite;
+        animation: shadowPulse 3s ease-in-out infinite;
     }
 
     .social-button:hover {
