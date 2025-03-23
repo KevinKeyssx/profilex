@@ -7,6 +7,7 @@
     import CertificateCard  from '$components/cards/CertificateCard.svelte';
     import ProjectCard      from '$components/cards/ProjectCard.svelte';
     import Footer           from '$components/Footer.svelte';
+    import Social           from '$components/cards/Social.svelte';
     import { certificates } from '$lib/data-certificates';
     import { projects }     from '$lib/data-projectes';
 
@@ -148,6 +149,8 @@
                         About Me
                     </button>
                 </div>
+
+                <Social />
             </div>
         </div>
     </section>
