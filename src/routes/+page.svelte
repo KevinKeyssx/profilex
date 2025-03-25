@@ -9,6 +9,7 @@
     import ProjectCard      from '$components/cards/ProjectCard.svelte';
     import Footer           from '$components/Footer.svelte';
     import Social           from '$components/cards/Social.svelte';
+    import Scroll           from '$components/Scroll.svelte';
     import Search           from '$components/inputs/Search.svelte';
     import { certificates } from '$lib/data-certificates';
     import { projects }     from '$lib/data-projectes';
@@ -142,7 +143,12 @@
 
                 <Social />
             </div>
+
+            <div class="absolute bottom-16 left-0 w-full">
+                <Scroll />
+            </div>
         </div>
+
     </section>
 
     <!-- About Section -->
@@ -270,7 +276,7 @@
             </div>
 
             <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-5 xl:gap-6 2xl:gap-8">
                 {#each filteredProjects as project, i (project.id)}
                     <ProjectCard {project} />
                 {:else}
