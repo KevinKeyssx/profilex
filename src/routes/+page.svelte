@@ -231,9 +231,9 @@
         class="py-20 bg-gray-900"
         bind:this={sectionRefs.projects}
     >
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" in:fade={{ duration: 800 }}>
-                <h2 class="text-4xl font-bold mb-4">My Projects</h2>
+        <div class="container mx-auto px-4 space-y-10">
+            <div class="text-center" in:fade={{ duration: 800 }}>
+                <h2 class="text-4xl font-bold mb-4">My Projects (4)</h2>
 
                 <div class="w-20 h-1 bg-purple-500 mx-auto mb-8"></div>
 
@@ -243,7 +243,7 @@
             </div>
 
             <!-- Search and Filter -->
-            <div class="mb-12 max-w-3xl mx-auto">
+            <div class=" max-w-3xl mx-auto">
                 <div class="flex flex-col md:flex-row gap-4 mb-8">
                     <div class="flex-1">
                         <Search
@@ -296,7 +296,7 @@
     >
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" in:fade={{ duration: 800 }}>
-                <h2 class="text-4xl font-bold mb-4">My Certificates</h2>
+                <h2 class="text-4xl font-bold mb-4">My Certificates (7)</h2>
 
                 <div class="w-20 h-1 bg-purple-500 mx-auto mb-8"></div>
 

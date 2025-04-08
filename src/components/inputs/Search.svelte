@@ -98,8 +98,7 @@
         filter: blur(3px);
     }
     .input {
-        background-color: #010201;
-        border: none;
+        background-color: #030218;
         width: 100%;
         min-width: 200px;
         height: 56px;
