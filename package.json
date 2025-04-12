@@ -26,5 +26,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"zod": "^3.24.2"
 	}
 }
