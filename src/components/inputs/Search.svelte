@@ -2,6 +2,7 @@
 
     export let value = "";
     export let placeholder = "Search...";
+    export let onInput = ( event: Event ) => {};
 
 </script>
 
@@ -20,7 +21,7 @@
             name        = "text"
             class       = "input"
             value       = { value }
-            oninput     = {( $event ) => value = ( $event.target as HTMLInputElement ).value }
+            oninput     = { onInput }
         />
 
         <div id="input-mask"></div>
