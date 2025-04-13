@@ -1,10 +1,31 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
+    import { onMount }  from "svelte";
+    import { fade }     from "svelte/transition";
 
-    import CertificateCard  from "$components/cards/CertificateCard.svelte";
-    import { certificates } from '$lib/data-certificates';
+    import CertificateCard      from "$components/cards/CertificateCard.svelte";
+    import type { Certificate } from "$models/certificate";
 
-    export let sectionRefs      : Record<string, HTMLElement>;
+
+    export let sectionRefs: Record<string, HTMLElement>;
+
+
+    let certificates: Certificate[] = [];
+
+    onMount(async () => {
+        try {
+            const projectsResponse = await fetch( 'api/profile/6', {
+                method: 'GET',
+            });
+            
+            if ( !projectsResponse.ok ) {
+                return;
+            }
+
+            certificates = await projectsResponse.json() as Certificate[];
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+        }
+    });
 </script>
 
 <section 
@@ -14,7 +35,7 @@
 >
     <div class="container mx-auto px-4">
         <div class="text-center mb-16" in:fade={{ duration: 800 }}>
-            <h2 class="text-4xl font-bold mb-4">My Certificates (7)</h2>
+            <h2 class="text-4xl font-bold mb-4">My Certificates ({certificates.length})</h2>
 
             <div class="w-20 h-1 bg-purple-500 mx-auto mb-8"></div>
 
