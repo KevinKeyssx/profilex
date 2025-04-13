@@ -3,6 +3,5 @@ export type Certificate = {
     title   : string;
     issuer  : string;
     date    : string;
-    image   : string;
     link    : string;
 };
