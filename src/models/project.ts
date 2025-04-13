@@ -4,6 +4,14 @@ export type Project = {
     description     : string;
     image           : string;
     link            : string;
-    github          : string;
+    github          : GitHub[];
     technologies    : string[];
+    status          : 'In Dev' | 'In Prod';
 };
+
+
+export type GitHub = {
+    stack   : string;
+    url     : string;
+}
+
