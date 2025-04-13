@@ -30,7 +30,7 @@
             <p class="text-gray-400">Issued by {certificate.issuer}</p>
 
             <!-- View certificate button that appears on hover -->
-            <div class="mt-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="mt-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                 <span class="inline-flex items-center text-sm font-medium text-purple-400">
                     View Certificate
 
@@ -44,7 +44,7 @@
 
     <!-- Date badge -->
     <div class="z-50 absolute top-0 right-0 transform -translate-y-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm shadow-lg shadow-purple-500/20" style="margin-top: -1px;">
-        {certificate.date}
+        {certificate.issuer}
     </div>
 
     <!-- Glow effect on hover -->
