@@ -95,7 +95,7 @@
                 <div class="relative">
                     <Sliders {imageAbout} />
 
-                    <div class="absolute -bottom-10 left-[62%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
+                    <div class="absolute -bottom-10 left-[67%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
                         <div class="grid">
                             <span class="text-2xl font-bold text-amber-300">5+</span>
 
@@ -119,7 +119,7 @@
                     approach to solving complex problems and building scalable solutions.
                 </p>
 
-                <div class="flex flex-col items-center space-y-4">
+                <div class="flex flex-col items-center space-y-6">
                     <img
                         src="https://github-readme-stats.vercel.app/api?username=kevinkeyssx&show_icons=true&theme=radical&count_private=true&include_all_commits=true&hide_border=true"
                         alt="GitHub Stats"
