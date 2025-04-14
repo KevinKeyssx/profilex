@@ -2,6 +2,7 @@ import { ENVS }                 from '$lib/envs';
 import { HttpCodes }            from '$lib/enums/http.enum';
 import { transformProject }     from '$lib/transforms/project.transform.js';
 import { transformCertificate } from '$lib/transforms/certificate.transform';
+import { transformImageAbout }  from '$lib/transforms/images-about.transform.js';
 
 
 export const GET = async ({ params }): Promise<Response> => {
@@ -33,7 +34,8 @@ export const GET = async ({ params }): Promise<Response> => {
         const data      = await response.json();
         const profile   = {
             '7': transformProject( data ),
-            '6': transformCertificate( data )
+            '6': transformCertificate( data ),
+            '8': transformImageAbout( data )
         }[ id ]
 
         return new Response(
