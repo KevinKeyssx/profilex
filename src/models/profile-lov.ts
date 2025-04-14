@@ -8,6 +8,8 @@ export type Skill = {
     status?         : 'In Dev' | 'In Prod';
     issuer?         : string;
     date?           : string;
+    description?    : string;
+    teacher?        : string;
 }
 
 export type LovVal = {

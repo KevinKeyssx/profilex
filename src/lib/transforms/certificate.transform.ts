@@ -9,4 +9,6 @@ export const transformCertificate = ( lov: Lov ): Certificate[] =>
         issuer          : lovVal.description.split(' - ' )[1],
         link            : lovVal.comment        ?? '',
         date            : lovVal.skill?.date    ?? '',
+        description     : lovVal.skill?.description ?? '',
+        teacher         : lovVal.skill?.teacher ?? '',
     }));
