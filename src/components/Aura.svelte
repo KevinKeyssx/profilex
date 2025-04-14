@@ -1,14 +1,25 @@
-<figure class="aura-center absolute inset-0 z-10">
-    <section class="img-bg"></section>
-    <svg
-        class="fill-token -scale-x-[100%]"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 200 200"
-    >
-    </svg>
-</figure>
+<div class="aura-container">
+    <figure class="aura-center">
+        <section class="img-bg"></section>
+        <svg
+            class="fill-token -scale-x-[100%]"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 200 200"
+        >
+        </svg>
+    </figure>
+</div>
 
 <style>
+    /* Container to prevent overflow */
+    .aura-container {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        overflow: hidden;
+        width: 100%;
+    }
+    
     .aura-center {
         display: flex;
         align-items: center;
@@ -25,10 +36,18 @@
 
     figure svg,
     .img-bg {
-        width: 16rem;
-        height: 16rem;
+        width: 12rem;
+        height: 12rem;
     }
 
+    @media (min-width: 640px) {
+        figure svg,
+        .img-bg {
+            width: 16rem;
+            height: 16rem;
+        }
+    }
+    
     @media (min-width: 768px) {
         figure svg,
         .img-bg {
@@ -64,7 +83,31 @@
 
     @keyframes pulse {
         50% {
-            transform: scale(4.5);
+            transform: scale(3);
+        }
+    }
+    
+    @media (min-width: 640px) {
+        @keyframes pulse {
+            50% {
+                transform: scale(3.5);
+            }
+        }
+    }
+    
+    @media (min-width: 768px) {
+        @keyframes pulse {
+            50% {
+                transform: scale(4);
+            }
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        @keyframes pulse {
+            50% {
+                transform: scale(4.5);
+            }
         }
     }
 </style>
