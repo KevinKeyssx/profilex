@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    import Aura             from '$components/Aura.svelte';
     import Footer           from '$components/Footer.svelte';
     import Hero             from '$components/sections/Hero.svelte';
     import About            from '$components/sections/About.svelte';
@@ -31,7 +30,6 @@
     <meta name="description" content="Personal portfolio showcasing my projects and skills" />
 </svelte:head>
 
-<Aura />
 
 <div class="dark bg-gray-900 text-white min-h-screen">
     <!-- Navbar -->
