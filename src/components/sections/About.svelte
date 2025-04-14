@@ -2,21 +2,32 @@
     import { fade, fly }    from "svelte/transition";
     import { onMount }      from "svelte";
 
-    import ShinyButton from "$components/buttons/ShinyButton.svelte";
-    import { ENVS } from "$lib/envs";
+    import ShinyButton          from "$components/buttons/ShinyButton.svelte";
+    import Sliders              from "$components/carrousel/Sliders.svelte";
+    import { ENVS }             from "$lib/envs";
+    import type { ImageAbout }  from "$models/images-about";
 
 
     export let sectionRefs: Record<string, HTMLElement>;
 
 
-    let isDownloading = false;
-    let iframeElement: HTMLIFrameElement | null = null;
+    let isDownloading   = false;
+    let iframeElement   : HTMLIFrameElement | null = null;
+    let imageAbout      : ImageAbout[] = [];
+
+
+    async function getImagesAbout() {
+        const response = await fetch( 'api/profile/8' );
+        imageAbout = await response.json() as ImageAbout[];
+    }
 
 
     onMount(() => {
         iframeElement = document.createElement('iframe') as HTMLIFrameElement;
         iframeElement.style.display = 'none';
         document.body.appendChild(iframeElement);
+
+        getImagesAbout();
 
         return () => {
             if (iframeElement && iframeElement.parentNode) {
@@ -82,13 +93,7 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div in:fly={{ y: 50, duration: 800, delay: 300 }}>
                 <div class="relative">
-                    <div class="w-full h-80 bg-gray-700 rounded-lg overflow-hidden">
-                        <img 
-                            src="/placeholder.svg?height=400&width=400" 
-                            alt="Profile" 
-                            class="w-full h-full object-cover"
-                        />
-                    </div>
+                    <Sliders {imageAbout} />
 
                     <div class="absolute -bottom-10 left-[62%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
                         <div class="grid">
@@ -102,6 +107,7 @@
 
             <div in:fly={{ y: 50, duration: 800, delay: 500 }}>
                 <h3 class="text-2xl font-bold mb-4">Who am I?</h3>
+
                 <p class="text-gray-300 mb-6">
                     I'm a passionate full-stack developer with expertise in modern web technologies. 
                     I specialize in creating responsive, accessible, and performant web applications 
@@ -113,34 +119,18 @@
                     approach to solving complex problems and building scalable solutions.
                 </p>
 
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div>
-                        <h4 class="font-bold mb-2 text-purple-400">Frontend</h4>
-                        <ul class="space-y-1 text-gray-300">
-                        <li>• React / Svelte</li>
-                        <li>• TypeScript</li>
-                        <li>• Tailwind CSS</li>
-                        <li>• Responsive Design</li>
-                        </ul>
-                    </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <img
+                        src="https://github-readme-stats.vercel.app/api?username=kevinkeyssx&show_icons=true&theme=radical&count_private=true&include_all_commits=true&hide_border=true"
+                        alt="GitHub Stats"
+                    />
 
-                    <div>
-                        <h4 class="font-bold mb-2 text-purple-400">Backend</h4>
-                        <ul class="space-y-1 text-gray-300">
-                        <li>• Node.js</li>
-                        <li>• Express</li>
-                        <li>• MongoDB / PostgreSQL</li>
-                        <li>• RESTful APIs</li>
-                        </ul>
-                    </div>
+                    <ShinyButton
+                        title={isDownloading ? 'Downloading' : 'Download CV'}
+                        onClick={downloadCV}
+                        disabled={isDownloading}
+                    />
                 </div>
-
-                <ShinyButton
-                    title={isDownloading ? 'Downloading' : 'Download CV'}
-                    onClick={downloadCV}
-                    disabled={isDownloading}
-                />
-
             </div>
         </div>
     </div>
