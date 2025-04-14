@@ -4,14 +4,17 @@
     import Social           from "$components/cards/Social.svelte";
     import Scroll           from "$components/Scroll.svelte";
     import AnimatedTitle    from "$components/title/AnimatedTitle.svelte";
+    import Aura             from "$components/Aura.svelte";
 
     export let scrollToSection  : ( section: string ) => void;
     export let sectionRefs      : Record<string, HTMLElement>;
 </script>
 
+<Aura />
+
 <section 
     id="home" 
-    class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
+    class="min-h-screen flex items-center justify-center relative overflow-hidden"
     bind:this={sectionRefs.home}
 >
     <div class="absolute inset-0 z-0">
