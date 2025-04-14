@@ -126,7 +126,7 @@
     <!-- Decorative elements -->
     <div class="absolute -inset-x-10 -inset-y-4 opacity-0 mx-auto h-[35rem] sm:h-96 w-[95%] -z-10" class:animate-in-decor={mounted} style="animation-delay: {delay + ((letters.length + nameLetters.length) * 80) + 300}ms; animation-fill-mode: forwards;">
         <!-- Top left decorative element -->
-        <div class="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
+        <div class="absolute -top-16 md:top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
 
         <!-- Bottom right decorative element -->
         <div class="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
