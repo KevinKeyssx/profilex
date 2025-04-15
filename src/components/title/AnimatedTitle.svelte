@@ -91,7 +91,7 @@
                     style="animation-delay: {delay + (i * 80)}ms; animation-fill-mode: forwards;"
                 >
                     {letter === ' ' ? '\u00A0' : letter}
-            </span>
+                </span>
             {/each}
         </span>
 
@@ -110,7 +110,7 @@
 
             <!-- Gradient overlay text -->
             <div 
-                class="absolute top-14 sm:top-16 inset-0 hover:scale-105 transition-transform duration-300 opacity-0"
+                class="absolute top-14 md:top-16 inset-0 hover:scale-105 transition-transform duration-300 opacity-0"
                 class:animate-in-gradient={mounted}
                 style="animation-delay: {delay + ((letters.length + nameLetters.length) * 80)}ms; animation-fill-mode: forwards;"
             >
