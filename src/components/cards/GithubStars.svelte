@@ -13,18 +13,15 @@
     }
 
 
-    const owner = "KevinKeyssx";
-
-
     let stars   = 0;
     let loading = true;
 
 
-    async function getRepoStars( owner: string, repo: string ): Promise<number> {
+    async function getRepoStars( repo: string ): Promise<number> {
         try {
-            const repository    = repo.split( '/' ).pop();
-            const response      = await fetch( `https://api.github.com/repos/${owner}/${repository}` );
-            
+            const repository    = repo.replace('https://github.com/', '');
+            const response      = await fetch( `https://api.github.com/repos/${repository}` );
+
             if ( !response.ok ) {
                 throw new Error(`Error: ${response.status} - ${response.statusText}`);
             }
@@ -42,7 +39,7 @@
 
 
     onMount(async () => {
-        stars = await getRepoStars( owner, github.url );
+        stars = await getRepoStars( github.url );
     });
 </script>
 
