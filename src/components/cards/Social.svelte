@@ -29,8 +29,8 @@
 
     const basicColors = {
         bg      : 'bg-gray-900/80',
-        shadow  : 'shadow-gray-900/50',
-        glow    : 'rgba(75, 85, 99, 0.6)',
+        shadow  : 'shadow-gray-900/80',
+        glow    : 'rgba(200, 162, 200, 0.3)',
     }
 
 
