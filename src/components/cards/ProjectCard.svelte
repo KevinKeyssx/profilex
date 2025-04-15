@@ -14,15 +14,15 @@
 
     const backgroundClasses = {
         'In Dev'    : 'bg-yellow-500',
-        'In Prod'   : 'bg-blue-500',
-        'Beta'      : 'bg-amber-500',
+        'In Prod'   : 'bg-green-500',
+        'Beta'      : 'bg-blue-500',
     };
 
 
     const textColor = {
         'In Dev'    : 'text-yellow-500',
-        'In Prod'   : 'text-blue-500',
-        'Beta'      : 'text-amber-500',
+        'In Prod'   : 'text-green-500',
+        'Beta'      : 'text-blue-500',
     };
 </script>
 
