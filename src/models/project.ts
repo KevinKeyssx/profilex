@@ -6,7 +6,7 @@ export type Project = {
     link            : string;
     github          : GitHub[];
     technologies    : string[];
-    status          : 'In Dev' | 'In Prod';
+    status          : 'In Dev' | 'In Prod' | 'Beta';
 };
 
 
