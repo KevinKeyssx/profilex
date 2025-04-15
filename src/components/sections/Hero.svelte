@@ -60,3 +60,9 @@
         </div>
     </div>
 </section>
+
+<style>
+    .animate-pulse {
+        animation: pulse 8s infinite;
+    }
+</style>
