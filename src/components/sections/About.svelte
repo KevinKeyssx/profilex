@@ -4,21 +4,25 @@
 
     import ShinyButton          from "$components/buttons/ShinyButton.svelte";
     import Sliders              from "$components/carrousel/Sliders.svelte";
-    import { ENVS }             from "$lib/envs";
+    import LoaderAbout          from "$components/loaders/AboutLoader.svelte";
     import type { ImageAbout }  from "$models/images-about";
+    import { ENVS }             from "$lib/envs";
 
 
     export let sectionRefs: Record<string, HTMLElement>;
+    const yearsExperience = new Date().getFullYear() - 2020;
 
 
     let isDownloading   = false;
     let iframeElement   : HTMLIFrameElement | null = null;
     let imageAbout      : ImageAbout[] = [];
+    let isLoading = true;
 
 
     async function getImagesAbout() {
         const response = await fetch( 'api/profile/8' );
         imageAbout = await response.json() as ImageAbout[];
+        isLoading = false;
     }
 
 
@@ -93,11 +97,14 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div in:fly={{ y: 50, duration: 800, delay: 300 }}>
                 <div class="relative">
-                    <Sliders {imageAbout} />
-
-                    <div class="absolute -bottom-10 left-[67%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600 rounded-lg grid items-center justify-center">
+                    {#if isLoading}
+                        <LoaderAbout />
+                    {:else}
+                        <Sliders {imageAbout} />
+                    {/if}
+                    <div class="absolute -bottom-10 left-[67%] sm:left-[82%] md:left-[80%] lg:left-[85%] xl:left-[88%] 2xl:left-[90%] w-24 h-24 bg-purple-600/20 backdrop-blur-3xl backdrop-contrast-125 rounded-lg grid items-center justify-center">
                         <div class="grid">
-                            <span class="text-2xl font-bold text-amber-300">5+</span>
+                            <span class="text-2xl font-bold text-amber-300">{yearsExperience}+</span>
 
                             <span class="text-sm ml-1">Years<br>Experience</span>
                         </div>
