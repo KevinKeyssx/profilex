@@ -2,8 +2,9 @@
     import { onMount }  from "svelte";
     import { fade, fly } from "svelte/transition";
 
-    import CertificateCard      from "$components/cards/CertificateCard.svelte";
     import type { Certificate } from "$models/certificate";
+    import CertificateCard      from "$components/cards/CertificateCard.svelte";
+    import CertificateLoader    from "$components/loaders/CertificateLoader.svelte";
 
 
     export let sectionRefs: Record<string, HTMLElement>;
@@ -14,6 +15,7 @@
     let itemsPerPage = 20;
     let totalPages = 0;
     let displayedCertificates: Certificate[] = [];
+    let isLoading = true;
 
 
     function changePage(page: number) {
@@ -91,6 +93,8 @@
             updateDisplayedCertificates();
         } catch (error) {
             console.error('Error fetching projects:', error);
+        } finally {
+            isLoading = false;
         }
     });
 </script>
@@ -102,7 +106,13 @@
 >
     <div class="container mx-auto px-4">
         <div class="text-center mb-16" in:fade={{ duration: 800 }}>
-            <h2 class="text-4xl font-bold mb-4">My Certificates ({ certificates.length })</h2>
+            <h2 class="text-4xl font-bold mb-4">My Certificates
+                {#if isLoading}
+                    (<svg class="inline z-10" xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"><g fill="none" stroke="#ca84c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="16" stroke-dashoffset="16" d="M12 3c4.97 0 9 4.03 9 9"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="16;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path><path stroke-dasharray="64" stroke-dashoffset="64" stroke-opacity="0.3" d="M12 3c4.97 0 9 4.03 9 9c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.2s" values="64;0"/></path></g></svg>)
+                {:else}
+                    ({certificates.length})
+                {/if}
+            </h2>
 
             <div class="w-20 h-1 bg-purple-500 mx-auto mb-8"></div>
 
@@ -112,11 +122,17 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {#each displayedCertificates as cert, i (cert.id)}
-                <div in:fly={{ y: 20, duration: 300, delay: i * 50 }}>
-                    <CertificateCard certificate={cert} />
-                </div>
-            {/each}
+            {#if isLoading}
+                {#each Array.from({ length: 20 }) as _, i}
+                    <CertificateLoader />
+                {/each}
+            {:else}
+                {#each displayedCertificates as cert, i (cert.id)}
+                    <div in:fly={{ y: 20, duration: 300, delay: i * 50 }}>
+                        <CertificateCard certificate={cert} />
+                    </div>
+                {/each}
+            {/if}
         </div>
 
         <!-- Pagination controls -->
